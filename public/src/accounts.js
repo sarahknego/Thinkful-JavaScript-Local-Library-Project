@@ -1,8 +1,11 @@
 
-let helperFuncs = require("./helperfuncs")
+//findByID uses a given array and searches through it.
+//It checks each object for an id key that matches the given id
+const findByID = (dataArray, id) =>
+  dataArray.find((object) => object.id === id);
 
 //FIND ACCOUNT BY ID
-const findAccountById = (accounts, id) => helperFuncs.findByID(accounts, id)
+const findAccountById = (accounts, id) => findByID(accounts, id)
 
 
 //SORT ACCOUNTS BY LAST NAME

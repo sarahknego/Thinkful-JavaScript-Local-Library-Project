@@ -1,4 +1,8 @@
-let helperFuncs = require("./helperfuncs")
+//checks whether books are checked out, given the desired param.
+const bookIsCheckedOut = (booksArray, boolean) =>
+  booksArray.filter((item) => {
+    return item.borrows[0].returned == boolean;
+  });
 
 function getTotalBooksCount(books) {
   return books.length
@@ -9,7 +13,7 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-  return helperFuncs.bookIsCheckedOut(books, false).length
+  return bookIsCheckedOut(books, false).length
 }
 
 function getMostCommonGenres(books) {
