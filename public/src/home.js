@@ -1,89 +1,14 @@
-//checks whether books are checked out, given the desired param.
-const bookIsCheckedOut = (booksArray, boolean) =>
-  booksArray.filter((item) => {
-    return item.borrows[0].returned == boolean;
-  });
+function getTotalBooksCount(books) {}
 
-function getTotalBooksCount(books) {
-  return books.length
-}
+function getTotalAccountsCount(accounts) {}
 
-function getTotalAccountsCount(accounts) {
-  return accounts.length
-}
+function getBooksBorrowedCount(books) {}
 
-function getBooksBorrowedCount(books) {
-  return bookIsCheckedOut(books, false).length
-}
+function getMostCommonGenres(books) {}
 
-function getMostCommonGenres(books) {
- const allGenres = books.reduce((acc, {genre}) => {
-   if (acc[genre]) {
-     acc[genre] += 1;
-   }
-   else {
-     acc[genre] = 1;
-   }
-   return acc;
- }, {});
+function getMostPopularBooks(books) {}
 
- const sortedGenres = sortObjectByValues(allGenres);
-
- let finalSortedArr = sortedGenres.map((item) => ({name: item, count: allGenres[item]})).slice(0,5);
- 
- return finalSortedArr;
-
-}
-
-const sortObjectByValues = (obj) => {
-  const keys = Object.keys(obj);
-  return keys.sort((keyA, keyB) => {
-    if (obj[keyA] > obj[keyB]) {
-      return -1;
-    } else {
-      return 0;
-    }
-  });
-};
-
-
-function getMostPopularBooks(books) {
- const allPopularBooks = books.reduce((acc, {title}, counter) => {
-  acc[title] = books[counter].borrows.length;
-  counter++;
-  return acc;
- }, {})
-
- const sortedBooks = sortObjectByValues(allPopularBooks);
-
- let formattedBooksArr = sortedBooks.map((item) => ({name: item, count: allPopularBooks[item]})).slice(0,5);
-
- return formattedBooksArr;
-}
-
-function getMostPopularAuthors(books, authors) {
-  const allAuthorsById = books.reduce((acc, {authorId}, counter, authorNumberToName) => {
-    for (let i = 0; i < authors.length; i++) {
-      if (books[counter].authorId === authors[i].id) {
-      authorNumberToName = Object.values(authors[i].name).join(' ');
-      break;
-    }
-  }
-  if (acc[authorNumberToName]) { 
-    acc[authorNumberToName] += books[counter].borrows.length;
-  } else {
-    acc[authorNumberToName] = books[counter].borrows.length;
-  }
-  counter++
-  return acc;
-  }, {});
-
-  const sortedAuthors = sortObjectByValues(allAuthorsById);
-
-  let formattedAuthorsArr = sortedAuthors.map((item) => ({name: item, count: allAuthorsById[item]})).slice(0,5);
-
-  return formattedAuthorsArr;
-}
+function getMostPopularAuthors(books, authors) {}
 
 module.exports = {
   getTotalBooksCount,
